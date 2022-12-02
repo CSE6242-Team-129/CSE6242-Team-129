@@ -191,7 +191,7 @@
             fetch(apiBaseUrl).then((resp) => resp.json())
                 .then((data) => {
                     // HEATMAP LAYER HISTORICAL
-                    fetch('data_short.csv').then(function(response){
+                    fetch('vis_data_short.csv').then(function(response){
                         return response.text();
                     }).then(function(text){
                         // http://localhost:8000/predict/zip/90001
