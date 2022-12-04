@@ -122,7 +122,7 @@
                         <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
                         <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
                         <li><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
-                        <li><a href="https://github.gatech.edu/jsaunders40/CSE6242-Group-Project/tree/api_model_merge/api" role="tab" target="_blank"><i class="fa fa-github"></i></a></li>
+                        <li><a href="https://github.com/orgs/CSE6242-Team-129/repositories" role="tab" target="_blank"><i class="fa fa-github"></i></a></li>
                     </ul>
 
                     <ul role="tablist">
@@ -152,21 +152,17 @@
 
                         <p class="lorem"> Historical data contains approx. 275,000 car accidents that occurred between February 2016 and December 2021 in Los Angeles County. A part of this data was used to train the XGBoost Classifier.</p>
 
-                        <p class="lorem">  </p>
+                        <p class="lorem"> </p>
                     </div>
 
                     <div class="sidebar-pane" id="profile">
-                        <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                        <p> About us </p>
+                        <h1 class="sidebar-header">About us<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                        <p> We are a group of graduate students at Georgia Tech. This project is a part of the Data and Visual Analytics class (CSE6242).  </p>
                     </div>
 
                     <div class="sidebar-pane" id="messages">
                         <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                        <p> Use this email to contact us</p>
-                    </div>
-
-                    <div class="sidebar-pane" id="settings">
-                        <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                        <p> Please contact at accidents.la@gmail.com </p>
                     </div>
                 </div>
             </div>
@@ -238,19 +234,8 @@
                             {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 6, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
                         ).addTo(map);
 
-                        //var marker = L.marker([34.2012, -118.4662]).addTo(map);
-
                         const sidebar = L.control.sidebar('sidebar').addTo(map);
                         sidebar.open('home');
-
-                        // SEARCH BOX
-                        var searchbox = L.control.searchbox({
-                            position: 'topright',
-                            expand: 'left'
-                        }).addTo(map);
-
-                        searchbox.addItem("91101")
-                        searchbox.addItem("90001")
 
                         // HEATMAP LAYER PREDICTION
                         heat_map = L.heatLayer(
@@ -274,12 +259,11 @@
                         // LAYERS LEGEND
                         var layer_control = {
                             base_layers : {
-                                //"Select layer:" : tile_layer, heat_map,
-                                "Current prediction" : heat_map,
                                 "Historical data" : historical_heat_map,
+                                "Current prediction" : heat_map,
                             },
                             overlays :  {
-                                // empty currently
+                                // empty 
                             },
                         };
 
@@ -288,7 +272,8 @@
                             layer_control.overlays,
                             {"autoZIndex": true, "collapsed": false, "position": "topright"}
                         ).addTo(map);
-
+                        
+                        // COLOR LEGEND
                         var legend = L.control({position: 'bottomright'});
 
                         function getColor(d) {
@@ -305,7 +290,6 @@
                                 grades = [0, 0.1, 0.4, 0.6, 0.8],
                                 labels = ['<strong> Density </strong> <br>'];
 
-                            // loop through our density intervals and generate a label with a colored square for each interval
                             div.innerHTML += labels.join('<br>')
 
                             for (var i = 0; i < grades.length; i++) {
@@ -313,16 +297,10 @@
                                     '<i class="square" style="background:' + getColor(grades[i] + 0.01) + '"></i> ' +
                                     grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
                             }
-
-                            //div.innerHTML = labels.join()
-
-
                             return div;
                         };
 
                         legend.addTo(map);
-
-                        //document.getElementById('loading-gif').style.display = "none";
                     });
             });
 </script>
